@@ -1,136 +1,133 @@
-# Mint-Y-Colora Theme (Compatible with latest Mint 19 and Mint-Y releases)
+# Mint-Y-Colora Theme
 
-
-## The goal is to make a script that makes it easy to change the colours of the Mint-Y (and hopefully soon Mint-X) theme of Linux Mint.
+### The goal is to make a script that makes it easy to change the colours of the Mint-Y (and hopefully soon Mint-X) theme of Linux Mint.
  We start from the source files at https://github.com/linuxmint/mint-themes and let loose a few scripts to change the colour accent.
 
-More information can be found here. Including many youtube tutorials.
-
-http://erikdubois.be/category/themes/mint-y-based-themes/
 Note: This repository is a fork from Erik Dubois' project, which doesn't work with latest Mint and Mint-Y theme.
-
-
-## Mint-Y-COLORA is capable to have ANY colour YOU like.
-
-[Sardi icons](https://sourceforge.net/projects/sardi/files/) uses also the term COLORA to indicate that the icons can be ANY colour. Hope this will be more transparent to the end-user.
-
-Create your own colour accent theme with these scripts.
-
-These scripts can also be run on other systems then Linux Mint. Scroll down to the bottom to see on which distro's.
-
-
-Each time I run these scripts, I renamed the result for example from
-
-    Mint-Y to Mint-Y-Sun
-    Mint-Dark to Mint-Dark-Sun
-    Mint-Darker to Mint-Darker-Sun
-
-Sun is just the name of the colour. You can choose any name.
-
-If you run the scripts on the latest version of the github <b>then</b> you will have always the most recent version with the latest bug fixes. That is always the best thing to do.
 
 
 # Just want to download the themes not build them
 
-All created themes can be found at https://github.com/erikdubois/Mint-Y-Colora-Theme-Collection.
+All created themes can be found at:
 
-Follow the steps on this github.
+    https://github.com/erikdubois/Mint-Y-Colora-Theme-Collection (outdated)
+    https://github.com/kunesj/Mint-Y-Colora-Theme-Personal-Collection (only few themes)
+
+Follow the steps in the README.
+
 
 
 # Installation
 
-##0. Get the source
+Script can run on a variety of Linux distro's, but are made for Debian based ones.
 
-First, install git
+If you are on a different kind of distro, you will need to change package manager in `0-install-tools.sh`.
+
+#### 1. Get the source
+
+First, install git:
 
 	sudo apt-get install git
 
-Get the latest version of the Linux Mint themes, clone the repository with
+Get the latest version of the Linux Mint themes and Mint-Y-Colora with:
 
-    git clone https://github.com/linuxmint/mint-themes
+    git clone https://github.com/linuxmint/mint-themes.git
+    git clone https://github.com/kunesj/Mint-Y-Colora-Theme.git
 
-Get the latest version of the updated Mint-Y-Colora, clone the repository with
+Copy scripts into downloaded mint-themes:
 
-    git clone https://github.com/HattDroid/Mint-Y-Colora-Theme.git
+    cp Mint-Y-Colora-Theme/*.sh mint-themes/
+    cp Mint-Y-Colora-Theme/*.py mint-themes/
 
-<b>Copy/paste the scripts</b> inside
+Go inside mint-themes folder and install required tools with:
 
+    cd mint-themes/
+    ./0-install-tools.sh
 
-    Mint-Y-Colora-Theme
+#### 2. Define name and color of new theme(s)
 
+Find yourself a nice colour with gpick or online. It should be a hexadecimal notation but without the hashtag `#`. Theme name must not have any spaces and will be appended to Mint-Y. example:
+```
+Sun     -> Mint-Y-Sun, Mint-Y-Darker-Sun, Mint-Y-Dark-Sun
+Sun-Alt -> Mint-Y-Sun-Alt, Mint-Y-Darker-Sun-Alt, Mint-Y-Dark-Sun-Alt
+```
 
-to the folder
+Open `autobuild-themes.py` and add line(s) inside `THEMES` dictionary variable. example:
+```
+THEMES = {
+    'Numix': {'light': 'd64937', 'dark': 'd64937'},
+}
+```
 
+#### 3. Build theme(s)
 
-	mint-themes
+Build all themes defined in `THEMES` dictionary variable:
+```
+./autobuild-themes.py
+```
+Created themes will be put into `~/.themes` directory.
 
-
-Let us run the scripts.
-
-##1. Change the colour
-
-Use the script to change the colour. Find yourself a nice colour with gpick or online.
-It should be a hexadecimal notation but without the hashtag or #. Read the script for more info.
-
-	1-change-color.sh
-
-##2. Delete old assets or png's
-
-Old png's will have to be deleted. They are still the original green ones. Read the script for more info.
-
-	2-delete-assets.sh
-
-
-##3. Make new assets or png's
-
-This is the most important part. New png's will be created with your colour.
-
-	3-make-assets.sh
+After the installation is complete you can activate the theme with your theme manager by selecting `Mint-Y-Sun`, `Mint-Y-Darker-Sun` or `Mint-Y-Dark-Sun` as Window/GTK+ theme. If you named the theme `Sun`. That is just an example.
 
 
+# Uninstall the theme manually
 
-##4. Renaming
+Themes are put into hidden folder `~/.themes` in your home directory. Just remove theme folders of any theme you want to uninstall.
 
-If all went well you will find the result in the directory (you just downloaded) in the folder
-
-    usr/share/themes   NOT /usr/share/themes !!
-
-We will run the last script nr 4
-
-	- to rename the folders
-	- to move the folders to ~/.themes
-	- to change the content of the three index.themes
-
-Follow the instructions in the script.
+If you cant find theme you want to uninstall in this folder, it could be installed in other theme folders on your computer:
+```
+/usr/share/themes/
+/usr/local/share/themes/
+~/.local/share/themes/
+~/.themes/
+```
 
 
-After the installation is complete you can activate the theme with your theme manager by selecting `Mint-Y-Sun`, `Mint-Y-Darker-Sun` or `Mint-Y-Dark-Sun` as Window/GTK+ theme. If you named the theme "Sun". That is just an example.
-
-# Resetting the themes files
-
-In the case you would like to try a new color than the one you have already tried, the files of the theme must be resetted. This can also be useful if you are unsure of the state of your theme working directory and want to start to work on a clean directory.
-Under the themes folder 'mint-themes', simply invoke:
-	
-	git reset --hard
+# F  A  Q
 
 
-After that, you should be good to generate a new theme with your personalized color.
+#### I want icons on the toolbar to be white like on the pictures!
+
+Go to the cinnamon folder and change the cinnnamon.css file to this code around line 455.
+
+    .system-status-icon {
+    icon-size: 16px;
+    padding: 0 1px;
+    color: white; }
+
+and line 1327 to this code
+
+    .applet-label {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 1); }
 
 
-# What is the inital look of Mint-Y theme
+#### What can you do if the script does not execute?
+
+Since I sometimes forget to make the script executable, I include here what you can do to solve that.
+
+A script can only run when it is marked as an executable.
+
+    ls -al
+
+Above code will reveal if a script has an "x". X meaning executable.
+
+For now if this happens, you should apply this code in the terminal and add the file name.
+
+    chmod +x typeyourfilename
+
+Then you can execute it by typing
+
+    ./typeyourfilename
+
+Or you can follow these steps
+
+![Screenshots](http://i.imgur.com/vXsOaFL.gif)
 
 
-The green colours of Mint-y theme
+#### What is the default look of Mint-Y theme
 
-    - 9ab87c
-    - 8fa876
-
-have been replaced both with a colour in hexadecimal format like a1a1a1 to follow one of the themes of the sardi icons at sourceforge or fit the colour of a wallpaper etc...
-
-Since this project only focuses on the original colour of the Mint-Y theme, make sure you reset Mint-Y files to their original state between runs. A simple 'git reset --hard' in Mint-Y theme folder should do the trick without impacting the Colora scripts you had to copy to modify the theme.
-
-https://sourceforge.net/projects/sardi/files
-
+Original Mint-Y theme colors are `9ab87c` and `8fa876`.
 
 This is the original Mint-Y-Dark theme with all the little green accents.
 
@@ -142,25 +139,11 @@ This is the original Mint-Y-Dark theme with all the little green accents.
 
 
 
-# What Mint-Y variations can you download from the collection github?
-
-
-https://github.com/erikdubois/Mint-Y-Colora-Theme-Collection
-
-
 # Mint-Y-Colora themes on Linux Mint 18.2
 
 
-Google+ is far easier to host the images on
 
-
-https://plus.google.com/collection/UlExqB
-
-
-
-
-
-# This is the Mint-Y-Alu theme.
+# Mint-Y-Alu
 
 ## Mint-Y-Dark-Alu
 
@@ -176,7 +159,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Arc theme.
+# Mint-Y-Arc
 
 ## Mint-Y-Dark-Arc
 
@@ -192,7 +175,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Arch theme.
+# Mint-Y-Arch
 
 ## Mint-Y-Dark-Arch
 
@@ -208,7 +191,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Crimson theme.
+# Mint-Y-Crimson
 
 ## Mint-Y-Dark-Crimson
 
@@ -217,7 +200,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Evopop theme.
+# Mint-Y-Evopop
 
 ## Mint-Y-Dark-Evopop
 
@@ -226,7 +209,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Faba theme.
+# Mint-Y-Faba
 
 ## Mint-Y-Dark-Faba
 
@@ -234,7 +217,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Fire theme.
+# Mint-Y-Fire
 
 ## Mint-Y-Dark-Fire
 
@@ -250,7 +233,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Havelock theme.
+# Mint-Y-Havelock
 
 ## Mint-Y-Dark-Havelock
 
@@ -258,7 +241,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Hibiscus theme.
+# Mint-Y-Hibiscus
 
 ## Mint-Y-Dark-Hibiscus
 
@@ -267,7 +250,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Lightning theme.
+# Mint-Y-Lightning
 
 ## Mint-Y-Dark-Lightning
 
@@ -283,7 +266,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Moka theme.
+# Mint-Y-Moka
 
 ## Mint-Y-Dark-MOka
 
@@ -292,7 +275,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Matrix theme.
+# Mint-Y-Matrix
 
 ## Mint-Y-Dark-Matrix
 
@@ -301,7 +284,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Oranchelo theme.
+# Mint-Y-Oranchelo
 
 ## Mint-Y-Dark-Oranchelo
 
@@ -310,7 +293,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Paper theme.
+# Mint-Y-Paper
 
 ## Mint-Y-Dark-Paper
 
@@ -318,7 +301,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Polo theme.
+# Mint-Y-Polo
 
 ## Mint-Y-Dark-Polo
 
@@ -327,7 +310,7 @@ https://plus.google.com/collection/UlExqB
 
 
 
-# This is the Mint-Y-Sidecar theme.
+# Mint-Y-Sidecar
 
 Started with Sardi Ghost Flexible script to change the colour, then conky aureola and mint-y theme.
 
@@ -338,7 +321,7 @@ Started with Sardi Ghost Flexible script to change the colour, then conky aureol
 
 
 
-# This is the Mint-Y-Sun theme.
+# Mint-Y-Sun
 
 ## Mint-Y-Dark-Sun
 
@@ -355,85 +338,10 @@ Started with Sardi Ghost Flexible script to change the colour, then conky aureol
 
 
 
-# This is the Mint-Y-Watusi theme.
+# Mint-Y-Watusi
 
 ## Mint-Y-Dark-Watusi
 
 ![Screenshots](http://i.imgur.com/nZsWOAQ.jpg)
 
 
-
-# Script can run on a variety of distro's.
-
-## Ubuntu 16.04
-
-We made a Mint-Y-Theme on Ubuntu with a red colour accent (ff0000).
-
-![Screenshots](http://i.imgur.com/fp1EGzO.png)
-
-
-# Uninstall the theme manually
-
-If you renamed the theme to Mint-Y-Sun for example
-
-    sudo rm -rf /usr/share/themes/{Mint-Y-Sun,Mint-Y-Darker-Sun,Mint-Y-Dark-Sun}
-    sudo rm -rf /usr/local/share/themes/{Mint-Y-Sun,Mint-Y-Darker-Sun,Mint-Y-Dark-Sun}
-    rm -rf ~/.local/share/themes/{Mint-Y-Sun,Mint-Y-Darker-Sun,Mint-Y-Dark-Sun}
-    rm -rf ~/.themes/{Mint-Y-Sun,Mint-Y-Darker-Sun,Mint-Y-Dark-Sun}
-
-
-Report any issues on google+ or on this github.
-
-
-# Remember
-
-If you want the icons on the toolbar to be white like I do.
-Go to the cinnamon folder and change the cinnnamon.css file to this code around line 455.
-
-    .system-status-icon {
-    icon-size: 16px;
-    padding: 0 1px;
-    color: white; }
-
-and line 1327 to this code
-
-    .applet-label {
-    font-weight: bold;
-    color: rgba(255, 255, 255, 1); }
-
-# F  A  Q
---------------------
-
-#What can you do if the script does not execute?
-
-Since I sometimes forget to make the script executable, I include here what you can do to solve that.
-
-A script can only run when it is marked as an executable.
-
-    ls -al
-
-Above code will reveal if a script has an "x". X meaning executable.
-Google "chmod" and "execute" and you will find more info.
-
-For now if this happens, you should apply this code in the terminal and add the file name.
-
-    chmod +x typeyourfilename
-
-Then you can execute it by typing
-
-    ./typeyourfilename
-
-Or you can follow these steps
-
-![Screenshots](http://i.imgur.com/vXsOaFL.gif)
-
-
--------------------------------------------------
-#But that is the fun in Linux.
-
-You can do whatever <b>Y O U</b> want.
-
-Share the knowledge.
-
-I share my knowledge at http://erikdubois.be
-------------------------------------------------
