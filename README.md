@@ -3,18 +3,17 @@
 ### The goal is to make a script that makes it easy to change the colours of the Mint-Y (and hopefully soon Mint-X) theme of Linux Mint.
  We start from the source files at https://github.com/linuxmint/mint-themes and let loose a few scripts to change the colour accent.
 
-Note: This repository is a fork from Erik Dubois' project, which doesn't work with latest Mint and Mint-Y theme.
+Note: This repository is a fork from https://github.com/erikdubois/Mint-Y-Colora-Theme, which doesn't work with latest Mint and Mint-Y theme.
 
 
 # Just want to download the themes not build them
 
 All created themes can be found at:
 
-    https://github.com/erikdubois/Mint-Y-Colora-Theme-Collection (outdated)
-    https://github.com/kunesj/Mint-Y-Colora-Theme-Personal-Collection (only few themes)
+    https://github.com/kunesj/Mint-Y-Colora-Theme-Personal-Collection
+    https://github.com/erikdubois/Mint-Y-Colora-Theme-Collection (outdated versions)
 
 Follow the steps in the README.
-
 
 
 # Installation
@@ -84,6 +83,7 @@ If you cant find theme you want to uninstall in this folder, it could be install
 # F  A  Q
 
 #### Can scripts put created themes somewhere else than `~/.themes`?
+
 ```
 ./autobuild-themes.py TARGET_DIR
 ```
@@ -130,14 +130,6 @@ Or you can follow these steps
 #### What is the default look of Mint-Y theme
 
 Original Mint-Y theme colors are `9ab87c` and `8fa876`.
-
-This is the original Mint-Y-Dark theme with all the little green accents.
-
-
-![Screenshots](http://i.imgur.com/RFfsxm6.jpg)
-
-
-![Screenshots](http://i.imgur.com/LcMjMBG.png)
 
 
 
