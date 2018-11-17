@@ -83,13 +83,13 @@ newcolour7=$personaldarkcolour
 
 SRC_DIR="src/Mint-Y"
 
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour1'/'$newcolour1'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour2'/'$newcolour2'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour3'/'$newcolour3'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour4'/'$newcolour4'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour5'/'$newcolour5'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour6'/'$newcolour6'/g' {}  \;
-find $SRC_DIR -name "*.*" -type f -exec sed -i 's/'$oldcolour7'/'$newcolour7'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour1'/'$newcolour1'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour2'/'$newcolour2'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour3'/'$newcolour3'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour4'/'$newcolour4'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour5'/'$newcolour5'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour6'/'$newcolour6'/g' {}  \;
+find $SRC_DIR -type f -exec sed -i 's/'$oldcolour7'/'$newcolour7'/g' {}  \;
 
 
 #Rubberband Solution for now
