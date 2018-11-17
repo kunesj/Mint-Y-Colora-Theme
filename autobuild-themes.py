@@ -50,7 +50,7 @@ for tname in THEMES:
     os.system('./1-change-color-updated.sh')
     os.system('./2-delete-assets.sh')
     os.system('./3-make-assets.sh')
-    os.system('./4-moving-the-themes.sh {}'.format(THEMES[tname]))
+    os.system('./4-moving-the-themes.sh {}'.format(tname))
 
 
 
