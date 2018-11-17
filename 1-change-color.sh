@@ -32,11 +32,11 @@
 
 
 #original light version is #9ab87c
-personallightcolour=fd424d
-
 #original dark version is #8fa876
+# !!!COLOR_REPLACE_START!!!
+personallightcolour=fd424d
 personaldarkcolour=fd424d
-
+# !!!COLOR_REPLACE_END!!!
 
 # THESE CODES MUST BE CHANGED
 # THESE CODES MUST BE CHANGED

@@ -74,6 +74,6 @@ echo "The themes have been renamed and moved to your home folder"
 echo "in the hidden folder .themes"
 echo "The folder was created if you did not have one."
 echo "If you made a mistake, delete the folders in .themes and run the script again."
-echo "Select icon theme with your icon theme manager and enjoy!"
+echo "Select theme with your theme manager and enjoy!"
 
 
