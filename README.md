@@ -25,19 +25,14 @@ If you are on a different kind of distro, you will need to change package manage
 
 #### 1. Get the source
 
-First, install git:
-
-	sudo apt-get install git
-
-Get the latest version of the Linux Mint themes and Mint-Y-Colora with:
+Get the latest version of the Linux Mint themes and Mint-Y-Colora theme, download and extract it from browser or clone repo with:
 
     git clone https://github.com/linuxmint/mint-themes.git
     git clone https://github.com/kunesj/Mint-Y-Colora-Theme.git
 
-Copy scripts into downloaded mint-themes:
+Copy scripts and file with theme definitions into downloaded mint-themes folder:
 
-    cp Mint-Y-Colora-Theme/*.sh mint-themes/
-    cp Mint-Y-Colora-Theme/*.py mint-themes/
+    cp Mint-Y-Colora-Theme/*.{sh,py,json} mint-themes/
 
 Go inside mint-themes folder and install required tools with:
 
@@ -46,22 +41,25 @@ Go inside mint-themes folder and install required tools with:
 
 #### 2. Define name and color of new theme(s)
 
-Find yourself a nice colour with gpick or online. It should be a hexadecimal notation but without the hashtag `#`. Theme name must not have any spaces and will be appended to Mint-Y. example:
+Find yourself a nice colour with gpick or online. It should be a hexadecimal notation but without the hashtag `#`.
+Theme name must not have any spaces and will be appended to Mint-Y. example:
 ```
 Sun     -> Mint-Y-Sun, Mint-Y-Darker-Sun, Mint-Y-Dark-Sun
 Sun-Alt -> Mint-Y-Sun-Alt, Mint-Y-Darker-Sun-Alt, Mint-Y-Dark-Sun-Alt
 ```
 
-Open `autobuild-themes.py` and add line(s) inside `THEMES` dictionary variable. example:
+Open `themes.json` and add/replace line(s) with theme definitions. example:
 ```
-THEMES = {
-    'Numix': {'light': 'd64937', 'dark': 'd64937'},
+{
+    "Smoke": {"light": "A1A1A1", "dark": "A1A1A1"},
+    "Majestic": {"light": "5F5F5F", "dark": "5F5F5F"}
 }
 ```
+Last line must NOT have `,` at the end!
 
 #### 3. Build theme(s)
 
-Build all themes defined in `THEMES` dictionary variable:
+Build all themes defined in `themes.json`:
 ```
 ./autobuild-themes.py
 ```
@@ -85,6 +83,10 @@ If you cant find theme you want to uninstall in this folder, it could be install
 
 # F  A  Q
 
+#### Can scripts put created themes somewhere else than `~/.themes`?
+```
+./autobuild-themes.py TARGET_DIR
+```
 
 #### I want icons on the toolbar to be white like on the pictures!
 
@@ -141,6 +143,7 @@ This is the original Mint-Y-Dark theme with all the little green accents.
 
 # Mint-Y-Colora themes on Linux Mint 18.2
 
+note: These pictures are relatively old
 
 
 # Mint-Y-Alu

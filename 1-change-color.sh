@@ -1,63 +1,29 @@
 #!/bin/bash
 #
-##################################################################################################################
-# Written to be used on 64 bits computers
-# Author 	: 	Erik Dubois
-# Website 	: 	http://www.erikdubois.be
-##################################################################################################################
-##################################################################################################################
+# Prepare light and dark color in hexadecimal format (6 letters or numbers).
+# - Never put a hashtag # in front of the colour code if copy/pasting from gpick
+# - Never put "FF" at the end if copy/pasting from inkscape
+# Use color values as scrpt arguments in format "1-change-color.sh LIGHT_COLOR DARK_COLOR"
+# - example: ./1-change-color.sh 9ab87c 8fa876
 #
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-##################################################################################################################
 
-# changing the assets from colour
+# path to Mint-Y source
+SRC_DIR="src/Mint-Y"
 
-# Mint-Y Theme 
-# Light green - 9ab87c
-# Dark green - 8fa876
-# but there are some minor green variations to consider as well
-
-##################################################################################################################
-##################################################################################################################
-##################################################################################################################
-# put your colour codes in here and do not change the rest
-# Never put a hashtag or # in front of the colour code if copy/pasting from gpick
-# Never put "FF" at the end if copy/pasting from inkscape
-# Always 6 letters or numbers
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
+# get new colors
+personallightcolour=$1
+personaldarkcolour=$2
+if [ $# -ne 2 ]; then
+    echo "ERROR! Missing (or incorect number of) color values! Using default colors!"
+    # these are orginal colors
+    personallightcolour=9ab87c
+    personaldarkcolour=8fa876
+fi
 
 
-#original light version is #9ab87c
-#original dark version is #8fa876
-# !!!COLOR_REPLACE_START!!!
-personallightcolour=fd424d
-personaldarkcolour=fd424d
-# !!!COLOR_REPLACE_END!!!
-
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
-# THESE CODES MUST BE CHANGED
-##################################################################################################################
-##################################################################################################################
-##################################################################################################################
-
-
-echo "All colours in the folder src are still the original green ones from github!!!"
-echo "Choose your colour that will replace the green online or with tools like gpick."
-echo "e.g. sudo apt-get install gpick"
+echo "All css files but also svg files will be affected"
+echo "PNG'S will not be altered with this script"
 echo "Changing ....."
-echo "Wait for it ...."
-
-##################################################################################################################
-
-## DO NOT CHANGE THESE LINES
-## DO NOT CHANGE THESE LINES
-## DO NOT CHANGE THESE LINES
 
 
 #original light version is #9ab87c
@@ -79,9 +45,8 @@ newcolour3=$personaldarkcolour
 newcolour4=$personallightcolour
 newcolour5=$personallightcolour
 newcolour6=$personallightcolour
-newcolour7=$personaldarkcolour	
+newcolour7=$personaldarkcolour
 
-SRC_DIR="src/Mint-Y"
 
 find $SRC_DIR -type f -exec sed -i 's/'$oldcolour1'/'$newcolour1'/g' {}  \;
 find $SRC_DIR -type f -exec sed -i 's/'$oldcolour2'/'$newcolour2'/g' {}  \;
@@ -122,7 +87,4 @@ oldcolour1="129, 166, 91"
 find $SRC_DIR -type f -exec sed -i "s/$oldcolour1/$newcolour1/g" {}  \;
 
 
-echo "All css files but also svg files will be affected"
-echo "PNG'S will not be altered with this script"
-echo
-echo "Next up delete all assets i.e. png's with script number 2"
+echo "Finished! Next, delete all assets i.e. png's with script number 2"

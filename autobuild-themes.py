@@ -2,55 +2,33 @@
 # coding: utf-8
 
 import sys, os
+import json
 
-##########################
-# FEEL FREE TO EDIT THIS #
-##########################
-THEMES = {
-    'Smoke': {'light': 'A1A1A1', 'dark': 'A1A1A1'},
-    'Majestic': {'light': '5F5F5F', 'dark': '5F5F5F'},
-    'Numix': {'light': 'd64937', 'dark': 'd64937'},
-    'Numix-Orange': {'light': 'FFA726', 'dark': 'FFA726'},
-}
+# load theme definitions
+THEMES = {}
+with open("themes.json", "r") as f:
+    THEMES = json.loads(f.read())
 
-####################
-# DO NOT EDIT THIS #
-####################
-REPLACE_START = '# !!!COLOR_REPLACE_START!!!'
-REPLACE_END = '# !!!COLOR_REPLACE_END!!!\n'
-REPLACE_STRING = '''{}
-personallightcolour={}
-personaldarkcolour={}
-{}'''
+# get installation destination
+TARGET = "" if (len(sys.argv) == 1) else sys.argv[1]
 
 # change working directory to directory of this file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 for tname in THEMES:
     print('Processing theme: {}'.format(tname))
-    
-    # Replace colors in script
-    with open('1-change-color.sh', 'r') as f:
-        data = f.read()
-    header = data.split(REPLACE_START)[0]
-    footer = data.split(REPLACE_END)[-1]
-    
-    new_colors = REPLACE_STRING.format(
-        REPLACE_START,
-        THEMES[tname]['light'], 
-        THEMES[tname]['dark'],
-        REPLACE_END
-    )
-    with open('1-change-color-updated.sh', 'w') as f:
-        f.write(header + new_colors + footer)
-    os.system('chmod +x 1-change-color-updated.sh')
 
-    # Build theme
+    if (THEMES[tname]['light'] is None) or (THEMES[tname]['dark'] is None):
+        print("Theme has empty/bad definition, skipping!")
+        continue
+
     os.system('git checkout -- src && rm -rf usr')
-    os.system('./1-change-color-updated.sh')
+    os.system('./1-change-color.sh {} {}'.format(THEMES[tname]['light'], THEMES[tname]['dark']))
     os.system('./2-delete-assets.sh')
     os.system('./3-make-assets.sh')
-    os.system('./4-moving-the-themes.sh {}'.format(tname))
-
+    if TARGET == "":
+        os.system('./4-moving-the-themes.sh {}'.format(tname))
+    else:
+        os.system('./4-moving-the-themes.sh {} "{}"'.format(tname, TARGET))
 
 

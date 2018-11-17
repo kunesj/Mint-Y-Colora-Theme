@@ -1,0 +1,34 @@
+{
+    "Numix": {"light": "d64937", "dark": "d64937"},
+
+
+    "Alu": {"light": "8d8d8d", "dark": "747474"},
+    "Arc": {"light": "6ba4e7", "dark": "3f89e0"},
+    "Arch": {"light": "45a8da", "dark": "81a65b"},
+    "Casablanca": {"light": "FDB95B", "dark": "FDB95B"},
+    "Crimson": {"light": "fd424d", "dark": "fc101d"},
+    "Evopop": {"light": "1685a6", "dark": "106179"},
+    "Faba": {"light": "D7CBDC", "dark": "81a65b"},
+    "Fire": {"light": "bb2f2f", "dark": "81a65b"},
+    "Froly": {"light": "fd7980", "dark": "fd7980"},
+    "Havelock": {"light": "5491d6", "dark": "5491d6"},
+    "Hibiscus": {"light": "851042", "dark": "851042"},
+    "Lightning": {"light": "ffb851", "dark": "81a65b"},
+    "Majestic": {"light": "5F5F5F", "dark": "5F5F5F"},
+    "Mandy": {"light": "C93648", "dark": "C93648"},
+    "Matrix": {"light": "3d7440", "dark": "2b532e"},
+    "Moka": {"light": "e1d5e5", "dark": "e1d5e5"},
+    "Numix-Orange": {"light": "FFA726", "dark": "FFA726"},
+    "Oranchelo": {"light": "41aacc", "dark": "2e8dac"},
+    "Orange": {"light": "EF7E2C", "dark": "EF7E2C"},
+    "Paper": {"light": "90a4ae", "dark": "738c98"},
+    "Polo": {"light": "688BC6", "dark": "688BC6"},
+    "Smoke": {"light": "A1A1A1", "dark": "A1A1A1"},
+    "Sun": {"light": "ef7e2c", "dark": "d86410"},
+    "Tacao": {"light": "EFA369", "dark": "EFA369"},
+    "Violet": {"light": "7A70FF", "dark": "7A70FF"},
+    "Watusi": {"light": "1080e4", "dark": "1080e4"}
+}
+
+
+
